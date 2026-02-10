@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Una Propuesta Especial ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rosa-suave: #ffb3c1;
+            --rosa-fuerte: #ff4d6d;
+            --azul-decision: #4cc9f0;
+            --blanco: #fff0f3;
+            --texto: #590d22;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--blanco);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 450px;
+            z-index: 10;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
+            backdrop-filter: blur(5px);
+        }
+
+        #pantalla-decision, #pantalla-final { display: none; }
+
+        img {
+            width: 250px;
+            max-width: 90%;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.2);
+        }
+
+        h1 {
+            color: var(--texto);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        button, .btn-maps {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* --- BOTONES INICIO --- */
+        .botones-inicio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 150px;
+            position: relative;
+        }
+
+        #btn-si {
+            background-color: var(--rosa-fuerte);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            z-index: 20;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+
+        #btn-no {
+            background-color: #e9ecef;
+            color: #6c757d;
+            z-index: 30;
+            width: 100px;
+            transition: none !important;
+        }
+
+        /* --- PANTALLA DECISIÓN --- */
+        .botones-decision {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn-opcion {
+            background-color: var(--azul-decision);
+            color: white;
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
+        }
+
+        /* --- TICKETS FINALIZADOS --- */
+        .ticket {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 20px;
+            border: 3px dashed var(--rosa-suave);
+            color: var(--texto);
+            text-align: left;
+        }
+
+        .ticket h2 { font-size: 1.2rem; text-align: center; color: var(--rosa-fuerte); margin-top: 0; text-transform: uppercase; }
+        .ticket p { margin: 10px 0; font-size: 0.95rem; line-height: 1.4; }
+        .ticket strong { color: var(--rosa-fuerte); }
+
+        /* Botón de Google Maps armonioso */
+        .btn-maps {
+            background-color: #f8f9fa;
+            color: #4285F4;
+            font-size: 0.85rem;
+            padding: 8px 15px;
+            border: 1px solid #4285F4;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            width: fit-content;
+        }
+
+        .sponsor {
+            font-size: 0.8rem !important;
+            text-align: center;
+            margin-top: 15px !important;
+            border-top: 1px dotted var(--rosa-suave);
+            padding-top: 10px;
+        }
+
+        .corazon-bg {
+            position: absolute;
+            color: var(--rosa-suave);
+            opacity: 0.5;
+            pointer-events: none;
+            animation: flotar 4s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="pantalla-inicio" class="container">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnlsb2swNTBkaG5waGdnNXNza2s0NXprZWdhdHlrZHpzMGUwdm0ydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IU5ApmC4e6wEw/giphy.gif" alt="Gif Koala">
+        <h1>¿Querés ser mi San Valentín, Koala? ❤️</h1>
+        <div class="botones-inicio">
+            <button id="btn-si" onclick="irADecision()">¡SÍ!</button>
+            <button id="btn-no" onmouseover="intentarNo()" onclick="intentarNo()">No</button>
+        </div>
+    </div>
+
+    <div id="pantalla-decision" class="container">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzZ1OGx6Zmdqbnk1NmUyYXl4dnBrZmtncnN6Z2V1NHFwZ2ZrNzRuaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ytu2GUYbvhz7zShGwS/giphy.gif" alt="Gif Celebración">
+        <h1>¡Gracias por aceptar, tomatito! 😍<br>¿Qué plan preferís?</h1>
+        <div class="botones-decision">
+            <button class="btn-opcion" onclick="mostrarTicket('presencial')">☕ Cita en El Café de Acá</button>
+            <button class="btn-opcion" onclick="mostrarTicket('virtual')">🎬 Cine KONDA (Virtual)</button>
+        </div>
+    </div>
+
+    <div id="pantalla-final" class="container">
+        <img id="gif-final-dinamico" src="" alt="Gif Final">
+        <h1>¡Plan Confirmado! ❤️</h1>
+        
+        <div id="ticket-presencial" class="ticket">
+            <h2>Cita Presencial</h2>
+            <p>📅 <strong>Sábado 14 de febrero</strong></p>
+            <p>📍 El Café de Acá <br><small>(Francisco Morra y Tte. Héctor Vera)</small></p>
+            <p>⏰ <strong>16:00 hs</strong></p>
+            <a href="https://maps.app.goo.gl/qvfpZUcV1oSNaxfh6" target="_blank" class="btn-maps">
+                📍 Ver ubicación en Maps
+            </a>
+        </div>
+
+        <div id="ticket-virtual" class="ticket">
+            <h2>Cine KONDA</h2>
+            <p>📍 <strong>Lugar:</strong> Discord</p>
+            <p>🎬 <strong>Película:</strong> Actividad Paranormal 👻</p>
+            <p>🗓️ <strong>Sábado 14 de febrero</strong> | ⏰ <strong>20:00 hs</strong></p>
+            <p class="sponsor">🍔 Comida y bebida patrocinada por <strong>Panda 🐼</strong></p>
+        </div>
+    </div>
+
+    <script>
+        let escalaSi = 1;
+        const btnSi = document.getElementById('btn-si');
+        const btnNo = document.getElementById('btn-no');
+
+        function intentarNo() {
+            escalaSi += 0.15; 
+            btnSi.style.transform = `scale(${escalaSi})`;
+            const padding = 100;
+            const availableX = window.innerWidth - btnNo.offsetWidth - padding;
+            const availableY = window.innerHeight - btnNo.offsetHeight - padding;
+            const safeX = Math.max(0, availableX);
+            const safeY = Math.max(0, availableY);
+            const randomX = (padding / 2) + Math.floor(Math.random() * safeX);
+            const randomY = (padding / 2) + Math.floor(Math.random() * safeY);
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+
+        function irADecision() {
+            btnNo.style.display = 'none';
+            document.getElementById('pantalla-inicio').style.display = 'none';
+            document.getElementById('pantalla-decision').style.display = 'block';
+            lanzarCorazones(['❤️', '💖', '✨']);
+        }
+
+        function mostrarTicket(tipo) {
+            const gifFinalImg = document.getElementById('gif-final-dinamico');
+            if (tipo === 'presencial') {
+                gifFinalImg.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeW5ianFpdjZrbWRza2NqM3ZsbzZ2NHBvMXh1Y2h2ejczYmo1NHp6biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iUaDOqormK0U5yEdRT/giphy.gif";
+                document.getElementById('ticket-presencial').style.display = 'block';
+                document.getElementById('ticket-virtual').style.display = 'none';
+                lanzarCorazones(['☕', '🥐', '🥰']);
+            } else {
+                gifFinalImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGIyb2JnbnFxdnd0dG5iZWlmamhmN3JneTZlejVwdTFwajdiZWl5bSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/siKMh3tAfQtsQ/giphy.gif";
+                document.getElementById('ticket-virtual').style.display = 'block';
+                document.getElementById('ticket-presencial').style.display = 'none';
+                lanzarCorazones(['🍿', '🎬', '🐼', '👻']);
+            }
+            document.getElementById('pantalla-decision').style.display = 'none';
+            document.getElementById('pantalla-final').style.display = 'block';
+        }
+
+        function lanzarCorazones(emojis) {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const corazon = document.createElement('div');
+                    corazon.classList.add('corazon-bg');
+                    corazon.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    corazon.style.left = Math.random() * 100 + 'vw';
+                    corazon.style.fontSize = Math.random() * 30 + 15 + 'px';
+                    corazon.style.animationDuration = Math.random() * 2 + 2 + 's';
+                    document.body.appendChild(corazon);
+                    setTimeout(() => corazon.remove(), 4000);
+                }, i * 70);
+            }
+        }
+
+        setInterval(() => {
+            const petalo = document.createElement('div');
+            petalo.classList.add('corazon-bg');
+            petalo.innerHTML = '🌸';
+            petalo.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(petalo);
+            setTimeout(() => petalo.remove(), 8000);
+        }, 1500);
+    </script>
+</body>
+</html>
