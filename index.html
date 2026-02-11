@@ -12,6 +12,7 @@
             --azul-decision: #4cc9f0;
             --blanco: #fff0f3;
             --texto: #590d22;
+            --whatsapp: #25D366;
         }
 
         * { box-sizing: border-box; }
@@ -27,6 +28,7 @@
             overflow-x: hidden;
             text-align: center;
             padding: 20px;
+            transition: background-color 1s ease;
         }
 
         .container {
@@ -58,7 +60,7 @@
             line-height: 1.4;
         }
 
-        button, .btn-maps {
+        button, .btn-maps, .btn-whatsapp {
             padding: 15px 30px;
             font-size: 1.1rem;
             border: none;
@@ -112,6 +114,13 @@
             box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
         }
 
+        .btn-nada {
+            background-color: #6c757d;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
         /* --- TICKETS FINALIZADOS --- */
         .ticket {
             display: none;
@@ -128,7 +137,6 @@
         .ticket p { margin: 10px 0; font-size: 0.95rem; line-height: 1.4; }
         .ticket strong { color: var(--rosa-fuerte); }
 
-        /* Botón de Google Maps armonioso */
         .btn-maps {
             background-color: #f8f9fa;
             color: #4285F4;
@@ -140,6 +148,25 @@
             align-items: center;
             gap: 5px;
             width: fit-content;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
+            color: white;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .comprobante-texto {
+            display: block;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: bold;
+            text-align: center;
         }
 
         .sponsor {
@@ -168,6 +195,10 @@
 </head>
 <body>
 
+    <audio id="musica-triste" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/07/Rainy-Day-Sad-Violin-Music.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="pantalla-inicio" class="container">
         <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnlsb2swNTBkaG5waGdnNXNza2s0NXprZWdhdHlrZHpzMGUwdm0ydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IU5ApmC4e6wEw/giphy.gif" alt="Gif Koala">
         <h1>¿Querés hacer algo en San Valentín Koala? </h1>
@@ -183,12 +214,13 @@
         <div class="botones-decision">
             <button class="btn-opcion" onclick="mostrarTicket('presencial')">☕ Salida en El Café de Acá</button>
             <button class="btn-opcion" onclick="mostrarTicket('virtual')">🎬 Cine KONDA (Virtual)</button>
+            <button class="btn-nada" onclick="mostrarTicket('nada')">nada 🐼</button>
         </div>
     </div>
 
     <div id="pantalla-final" class="container">
         <img id="gif-final-dinamico" src="" alt="Gif Final">
-        <h1>¡Gracias por elegir esta opción! ❤️</h1>
+        <h1 id="titulo-final">¡Gracias por elegir esta opción! ❤️</h1>
         
         <div id="ticket-presencial" class="ticket">
             <h2>Cita Presencial</h2>
@@ -198,6 +230,8 @@
             <a href="https://maps.app.goo.gl/qvfpZUcV1oSNaxfh6" target="_blank" class="btn-maps">
                 📍 Ver ubicación en Maps
             </a>
+            <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
+            <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp">Enviar a mi WhatsApp ✅</a>
         </div>
 
         <div id="ticket-virtual" class="ticket">
@@ -206,6 +240,16 @@
             <p>🎬 <strong>Película:</strong> Actividad Paranormal 👻</p>
             <p>🗓️ <strong>Sábado 14 de febrero</strong> | ⏰ <strong>20:00 hs</strong></p>
             <p class="sponsor">🍔 Comida y bebida patrocinada por <strong>Panda 🐼</strong></p>
+            <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
+            <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp">Enviar a mi WhatsApp ✅</a>
+        </div>
+
+        <div id="ticket-nada" class="ticket">
+            <h2 style="color: #555;">...bueno 💔</h2>
+            <p>Has elegido la opción de no hacer nada. Los panditas están tristes.</p>
+            <p>Igual te quiero mucho, Koala.</p>
+            <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
+            <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp" style="background-color: #6c757d;">Enviar comprobante ❌</a>
         </div>
     </div>
 
@@ -238,16 +282,32 @@
 
         function mostrarTicket(tipo) {
             const gifFinalImg = document.getElementById('gif-final-dinamico');
+            const tituloFinal = document.getElementById('titulo-final');
+            document.body.style.backgroundColor = "var(--blanco)";
+            
             if (tipo === 'presencial') {
                 gifFinalImg.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeW5ianFpdjZrbWRza2NqM3ZsbzZ2NHBvMXh1Y2h2ejczYmo1NHp6biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iUaDOqormK0U5yEdRT/giphy.gif";
                 document.getElementById('ticket-presencial').style.display = 'block';
                 document.getElementById('ticket-virtual').style.display = 'none';
+                document.getElementById('ticket-nada').style.display = 'none';
                 lanzarCorazones(['☕', '🥐', '🥰']);
-            } else {
+            } else if (tipo === 'virtual') {
                 gifFinalImg.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGIyb2JnbnFxdnd0dG5iZWlmamhmN3JneTZlejVwdTFwajdiZWl5bSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/siKMh3tAfQtsQ/giphy.gif";
                 document.getElementById('ticket-virtual').style.display = 'block';
                 document.getElementById('ticket-presencial').style.display = 'none';
+                document.getElementById('ticket-nada').style.display = 'none';
                 lanzarCorazones(['🍿', '🎬', '🐼', '👻']);
+            } else if (tipo === 'nada') {
+                // CAMBIO A MODO TRISTE
+                document.body.style.backgroundColor = "#d1d1d1";
+                tituloFinal.innerText = "Oh... elegiste nada 🥺";
+                tituloFinal.style.color = "#555";
+                gifFinalImg.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjAxZDdvejJ5bnVjajAxdHsqNzk3M3l0MDRudXM0OGUxejJjenQ4NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Q3Ou3eFKMTFn2/giphy.gif";
+                document.getElementById('ticket-nada').style.display = 'block';
+                document.getElementById('ticket-presencial').style.display = 'none';
+                document.getElementById('ticket-virtual').style.display = 'none';
+                document.getElementById('musica-triste').play();
+                lanzarCorazones(['🐼', '❌', '💔', '☁️']);
             }
             document.getElementById('pantalla-decision').style.display = 'none';
             document.getElementById('pantalla-final').style.display = 'block';
@@ -278,6 +338,4 @@
         }, 1500);
     </script>
 </body>
-
 </html>
-
