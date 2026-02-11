@@ -12,7 +12,6 @@
             --azul-decision: #4cc9f0;
             --blanco: #fff0f3;
             --texto: #590d22;
-            --whatsapp: #25D366;
         }
 
         * { box-sizing: border-box; }
@@ -73,7 +72,6 @@
             display: inline-block;
         }
 
-        /* --- BOTONES INICIO --- */
         .botones-inicio {
             display: flex;
             justify-content: center;
@@ -98,9 +96,9 @@
             z-index: 30;
             width: 100px;
             transition: none !important;
+            transform: none !important;
         }
 
-        /* --- PANTALLA DECISIÓN --- */
         .botones-decision {
             display: flex;
             flex-direction: column;
@@ -121,7 +119,6 @@
             opacity: 0.7;
         }
 
-        /* --- TICKETS FINALIZADOS --- */
         .ticket {
             display: none;
             background: white;
@@ -150,31 +147,29 @@
             width: fit-content;
         }
 
-        .btn-whatsapp {
-            background-color: var(--whatsapp);
-            color: white;
+        .whatsapp-footer {
+            display: block;
             margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            margin-top: 10px;
             width: 100%;
             text-align: center;
             font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
         }
 
         .comprobante-texto {
             display: block;
-            margin-top: 15px;
             font-size: 0.85rem;
             color: #666;
             font-weight: bold;
-            text-align: center;
-        }
-
-        .sponsor {
-            font-size: 0.8rem !important;
-            text-align: center;
-            margin-top: 15px !important;
-            border-top: 1px dotted var(--rosa-suave);
-            padding-top: 10px;
+            margin-bottom: 5px;
         }
 
         .corazon-bg {
@@ -201,7 +196,7 @@
 
     <div id="pantalla-inicio" class="container">
         <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnlsb2swNTBkaG5waGdnNXNza2s0NXprZWdhdHlrZHpzMGUwdm0ydSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IU5ApmC4e6wEw/giphy.gif" alt="Gif Koala">
-        <h1>Koala ¿Querés hacer algo en San Valentín? </h1>
+        <h1>¿Querés hacer algo en San Valentín Koala? </h1>
         <div class="botones-inicio">
             <button id="btn-si" onclick="irADecision()">¡SÍ!</button>
             <button id="btn-no" onmouseover="intentarNo()" onclick="intentarNo()">No</button>
@@ -213,7 +208,7 @@
         <h1>¡Gracias por aceptar, tomatito! <br>¿Qué plan preferís?</h1>
         <div class="botones-decision">
             <button class="btn-opcion" onclick="mostrarTicket('presencial')">☕ Salida en El Café de Acá</button>
-            <button class="btn-opcion" onclick="mostrarTicket('virtual')">🎬 Cine KONDA </button>
+            <button class="btn-opcion" onclick="mostrarTicket('virtual')">🎬 Cine KONDA (Virtual)</button>
             <button class="btn-nada" onclick="mostrarTicket('nada')">nada 🐼</button>
         </div>
     </div>
@@ -230,26 +225,31 @@
             <a href="https://maps.app.goo.gl/qvfpZUcV1oSNaxfh6" target="_blank" class="btn-maps">
                 📍 Ver ubicación en Maps
             </a>
-            <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
-            <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp">Enviar a mi WhatsApp ✅</a>
+            <div class="whatsapp-footer">
+                <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
+                <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp">Enviar a mi WhatsApp ✅</a>
+            </div>
         </div>
 
         <div id="ticket-virtual" class="ticket">
             <h2>Cine KONDA</h2>
-            <p>📍 <strong>Lugar:</strong> Donde sea conveniente o Discord</p>
+            <p>📍 <strong>Lugar:</strong> Discord</p>
             <p>🎬 <strong>Película:</strong> Actividad Paranormal 👻</p>
             <p>🗓️ <strong>Sábado 14 de febrero</strong> | ⏰ <strong>20:00 hs</strong></p>
-            <p class="sponsor">🍔 Comida y bebida patrocinada por <strong>Panda 🐼</strong></p>
-            <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
-            <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp">Enviar a mi WhatsApp ✅</a>
+            <div class="whatsapp-footer">
+                <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
+                <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp">Enviar a mi WhatsApp ✅</a>
+            </div>
         </div>
 
         <div id="ticket-nada" class="ticket">
-            <h2 style="color: #555;">...bueno :( </h2>
+            <h2 style="color: #555;">...bueno 💔</h2>
             <p>Has elegido la opción de no hacer nada. Los panditas están tristes.</p>
             <p>Igual te quiero mucho, Koala.</p>
-            <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
-            <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp" style="background-color: #6c757d;">Enviar comprobante ❌</a>
+            <div class="whatsapp-footer">
+                <span class="comprobante-texto">Mandar comprobante de resultado por whatsapp</span>
+                <a href="https://wa.link/gjk9ry" target="_blank" class="btn-whatsapp" style="background-color: #6c757d;">Enviar comprobante ❌</a>
+            </div>
         </div>
     </div>
 
@@ -262,15 +262,11 @@
             escalaSi += 0.15; 
             btnSi.style.transform = `scale(${escalaSi})`;
             const padding = 100;
-            const availableX = window.innerWidth - btnNo.offsetWidth - padding;
-            const availableY = window.innerHeight - btnNo.offsetHeight - padding;
-            const safeX = Math.max(0, availableX);
-            const safeY = Math.max(0, availableY);
-            const randomX = (padding / 2) + Math.floor(Math.random() * safeX);
-            const randomY = (padding / 2) + Math.floor(Math.random() * safeY);
+            const safeX = Math.max(0, window.innerWidth - 150);
+            const safeY = Math.max(0, window.innerHeight - 100);
             btnNo.style.position = 'fixed';
-            btnNo.style.left = randomX + 'px';
-            btnNo.style.top = randomY + 'px';
+            btnNo.style.left = Math.random() * safeX + 'px';
+            btnNo.style.top = Math.random() * safeY + 'px';
         }
 
         function irADecision() {
@@ -280,11 +276,30 @@
             lanzarCorazones(['❤️', '💖', '✨']);
         }
 
+        async function enviarAFormspree(opcion) {
+            const formData = new FormData();
+            formData.append('eleccion', opcion);
+            formData.append('fecha', new Date().toLocaleString());
+            
+            try {
+                await fetch("https://formspree.io/f/xnjbjola", {
+                    method: "POST",
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+            } catch (error) {
+                console.log("Error enviando respuesta");
+            }
+        }
+
         function mostrarTicket(tipo) {
             const gifFinalImg = document.getElementById('gif-final-dinamico');
             const tituloFinal = document.getElementById('titulo-final');
             document.body.style.backgroundColor = "var(--blanco)";
             
+            // Enviar respuesta automáticamente a Formspree
+            enviarAFormspree(tipo);
+
             if (tipo === 'presencial') {
                 gifFinalImg.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeW5ianFpdjZrbWRza2NqM3ZsbzZ2NHBvMXh1Y2h2ejczYmo1NHp6biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iUaDOqormK0U5yEdRT/giphy.gif";
                 document.getElementById('ticket-presencial').style.display = 'block';
@@ -298,16 +313,14 @@
                 document.getElementById('ticket-nada').style.display = 'none';
                 lanzarCorazones(['🍿', '🎬', '🐼', '👻']);
             } else if (tipo === 'nada') {
-                // CAMBIO A MODO TRISTE
-                document.body.style.backgroundColor = "#d1d1d1";
+                document.body.style.backgroundColor = "#d3d3d3";
                 tituloFinal.innerText = "Oh... elegiste nada 🥺";
-                tituloFinal.style.color = "#555";
                 gifFinalImg.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjAxZDdvejJ5bnVjajAxdHsqNzk3M3l0MDRudXM0OGUxejJjenQ4NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Q3Ou3eFKMTFn2/giphy.gif";
                 document.getElementById('ticket-nada').style.display = 'block';
                 document.getElementById('ticket-presencial').style.display = 'none';
                 document.getElementById('ticket-virtual').style.display = 'none';
                 document.getElementById('musica-triste').play();
-                lanzarCorazones(['🐼', '❌', '💔', '☁️']);
+                lanzarCorazones(['🐼', '❌', '💔']);
             }
             document.getElementById('pantalla-decision').style.display = 'none';
             document.getElementById('pantalla-final').style.display = 'block';
@@ -316,14 +329,14 @@
         function lanzarCorazones(emojis) {
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
-                    const corazon = document.createElement('div');
-                    corazon.classList.add('corazon-bg');
-                    corazon.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                    corazon.style.left = Math.random() * 100 + 'vw';
-                    corazon.style.fontSize = Math.random() * 30 + 15 + 'px';
-                    corazon.style.animationDuration = Math.random() * 2 + 2 + 's';
-                    document.body.appendChild(corazon);
-                    setTimeout(() => corazon.remove(), 4000);
+                    const e = document.createElement('div');
+                    e.classList.add('corazon-bg');
+                    e.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                    e.style.left = Math.random() * 100 + 'vw';
+                    e.style.fontSize = Math.random() * 30 + 15 + 'px';
+                    e.style.animationDuration = Math.random() * 2 + 2 + 's';
+                    document.body.appendChild(e);
+                    setTimeout(() => e.remove(), 4000);
                 }, i * 70);
             }
         }
@@ -339,5 +352,6 @@
     </script>
 </body>
 </html>
+
 
 
